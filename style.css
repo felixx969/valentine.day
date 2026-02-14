@@ -1,0 +1,182 @@
+body{
+    margin:0;
+    height:100vh;
+    background:#e6b8c1;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:Arial, sans-serif;
+    overflow:hidden;
+}
+
+.envelope-wrapper{
+    position:absolute;
+}
+
+.envelope{
+    width:300px;
+    height:200px;
+    background:#ffccd5;
+    position:relative;
+    border-radius:10px;
+}
+
+.flap{
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:#ff8fab;
+    clip-path:polygon(0 0,50% 60%,100% 0);
+    transform-origin:top;
+    transition:1s;
+}
+
+.envelope.open .flap{
+    transform:rotateX(180deg);
+}
+
+.ribbon{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    cursor:pointer;
+}
+
+.bow-center{
+    width:40px;
+    height:45px;
+    background:#c1121f;
+    border-radius:10px;
+    margin:auto;
+}
+
+.bow-left,.bow-right{
+    position:absolute;
+    width:100px;
+    height:60px;
+    background:#e63946;
+    top:-10px;
+}
+
+.bow-left{
+    left:-90px;
+    border-radius:60% 40% 60% 40%;
+}
+
+.bow-right{
+    right:-90px;
+    border-radius:40% 60% 40% 60%;
+}
+
+.ribbon.open .bow-left{
+    transform:translateX(-120px);
+    opacity:0;
+}
+
+.ribbon.open .bow-right{
+    transform:translateX(120px);
+    opacity:0;
+}
+
+.ribbon.open .bow-center{
+    opacity:0;
+}
+
+.card{
+    display:none;
+    background:#f3f3f3;
+    padding:30px;
+    border-radius:20px;
+    width:400px;
+    text-align:center;
+    position:relative;
+}
+
+.card.show{
+    display:block;
+}
+
+.message p{
+    opacity:0;
+    transform:translateY(20px);
+    transition:.6s;
+}
+
+.choco{
+    font-size:40px;
+    margin-top:20px;
+    animation:pop 1s infinite alternate;
+}
+
+@keyframes pop{
+    from{transform:scale(1)}
+    to{transform:scale(1.15)}
+}
+
+.hidden{
+    display:none;
+}
+
+.pocoyo-area{
+    position:absolute;
+    top:-120px;
+    left:50%;
+    transform:translateX(-50%);
+    width:180px;
+}
+
+.pocoyo{
+    width:100%;
+    animation:idleCute 2.5s ease-in-out infinite;
+    transform-origin:bottom center;
+}
+
+@keyframes idleCute{
+    0%{transform:translateY(0) rotate(-2deg);}
+    50%{transform:translateY(-6px) rotate(3deg);}
+    100%{transform:translateY(0) rotate(-2deg);}
+}
+
+.pocoyo.throw{
+    animation:throwCute .5s ease;
+}
+
+@keyframes throwCute{
+    0%{transform:translateY(0) rotate(0);}
+    50%{transform:translateY(-10px) rotate(6deg);}
+    100%{transform:translateY(0) rotate(0);}
+}
+
+.petals{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+}
+
+.petal{
+    position:absolute;
+    top:-20px;
+    animation:windFall linear forwards;
+}
+
+@keyframes windFall{
+    0%{transform:translate(0,0) rotate(0);opacity:1;}
+    25%{transform:translate(-30px,120px) rotate(90deg);}
+    50%{transform:translate(30px,250px) rotate(180deg);}
+    75%{transform:translate(-20px,380px) rotate(270deg);}
+    100%{transform:translate(10px,520px) rotate(360deg);opacity:0;}
+}
+
+.hearts span{
+    position:absolute;
+    animation:heartFall linear forwards;
+}
+
+@keyframes heartFall{
+    from{transform:translateY(0);}
+    to{transform:translateY(100vh);opacity:0;}
+}
